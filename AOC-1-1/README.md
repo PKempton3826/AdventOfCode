@@ -1,0 +1,2 @@
+This solution contains a project for solving the Advent of Code 2020 challenge (day 1, puzzle 1).
+Puzzle: Given a list of numbers, find the product of 2 of them whose sum is 2020.
