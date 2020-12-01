@@ -34,7 +34,7 @@ int main()
     }
 
     // Loop through all numbers, checking if any add up to our goal
-    // This isn't very efficient, will have O(N^3) time complexity
+    // This is fairly efficient, should be O(n log(log(n))) for time complexity
     for (int i = 0; i < numCount - 2; i++)
     {
         for (int j = i + 1; j < numCount - 1; j++)
