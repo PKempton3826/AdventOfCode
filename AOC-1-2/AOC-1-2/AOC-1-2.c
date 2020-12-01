@@ -22,7 +22,7 @@
 void getAcknowledgement()
 {
     printf("\nPress [Enter] to exit\n");
-    getchar();
+    getchar(); // Intentionally ignore return
 }
 
 int main()
@@ -47,7 +47,25 @@ int main()
     char* ptr;
     while (fgets(str, sizeof(str), fp) != NULL)
     {
-        nums[numCount] = strtol(str, &ptr, 10);
+        if (numCount >= NUM_COUNT)
+        {
+            // Too many numbers in txt file
+            printf("Too many numbers in entries.txt (up to 250 allowed)\n");
+            getAcknowledgement();
+            return 0;
+        }
+        int buff = 0;
+        if ((buff = strtol(str, &ptr, 10)) != 0)
+        {
+            nums[numCount] = buff;
+        }
+        else
+        {
+            // Invalid line in txt file
+            printf("entries.txt has invalid text.  Only positive numbers should be present.\n");
+            getAcknowledgement();
+            return 0;
+        }
         numCount++;
     }
 
