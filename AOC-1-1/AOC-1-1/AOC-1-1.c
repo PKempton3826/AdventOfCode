@@ -34,10 +34,10 @@ int main()
     }
 
     // Loop through all numbers, checking if any add up to our goal
-    // This isn't very efficient, will have O(N^2) time complexity
-    for (int i = 0; i < numCount; i++)
+    // This isn't very efficient, will have O(n log n) time complexity
+    for (int i = 0; i < numCount - 1; i++)
     {
-        for (int j = 0; j < numCount; j++)
+        for (int j = i + 1; j < numCount; j++)
         {
             if ((nums[i] + nums[j]) == GOAL)
             {
