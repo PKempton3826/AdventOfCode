@@ -1,9 +1,10 @@
-// File: AOC-3-1.c
-// Project: AOC-3-1
+// File: AOC-3-2.c
+// Project: AOC-3-2
 // Programmer: Philip Kempton
 // First Version: December 3rd, 2020
-// Description: This file contains logic for solving the Advent of Code puzzle (day 3, puzzle 1).
-//              Puzzle: Given an area grid (area.txt) count how many trees are encountered using slope -1/3.
+// Description: This file contains logic for solving the Advent of Code puzzle (day 3, puzzle 2).
+//              Puzzle: Given an area grid (area.txt) count how many trees are encountered using 
+//                      various slopes and display the product of the results.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +13,7 @@
 #define ERR_LEN 100 // max size of error string for errno
 #define AREA_WIDTH 31 // width of area grid in file
 #define AREA_HEIGHT 323 // height of area grid in file
+#define SLOPE_COUNT 5 // Number of slopes to check for trees
 
 // Function: getAcknowledgement
 // Description: requests and waits for user to press Enter.
@@ -32,9 +34,9 @@ void getAcknowledgement()
 //    slopeDown:  the y of the slope (this should be positive, even though this function traverses 
 //                down the area).
 // Returns: Number of trees encountered.
-int countTreesInPath(int area[AREA_HEIGHT][AREA_WIDTH], unsigned int slopeRight, unsigned int slopeDown)
+long countTreesInPath(int area[AREA_HEIGHT][AREA_WIDTH], unsigned int slopeRight, unsigned int slopeDown)
 {
-    int treeCount = 0;
+    long treeCount = 0;
     int col = 0;
     for (int row = 0; row < AREA_HEIGHT; row += slopeDown)
     {
@@ -99,10 +101,23 @@ int main()
         }
     }
 
-    // Count trees found using 3-1 slope (right 3, down 1)
-    int treeCount = countTreesInPath(area, 3, 1);
+    // Array of slopes to check
+    long slopes[SLOPE_COUNT][2] = {
+        {1, 1},
+        {3, 1},
+        {5, 1},
+        {7, 1},
+        {1, 2},
+    };
+
+    // Check for trees using each slope, multiplying the results together as we go
+    long product = 1;
+    for (int i = 0; i < SLOPE_COUNT; i++)
+    {
+        product *= countTreesInPath(area, slopes[i][0], slopes[i][1]);
+    }
 
     // Display result to user
-    printf("%d trees encountered.\n", treeCount);
+    printf("%d is the product.\n", product);
     getAcknowledgement();
 }
