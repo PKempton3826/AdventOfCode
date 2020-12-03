@@ -1,5 +1,5 @@
 // File: AOC-2-2.c
-// Project: AOC-2-1
+// Project: AOC-2-2
 // Programmer: Philip Kempton
 // First Version: December 2nd, 2020
 // Description: This file contains logic for solving the Advent of Code puzzle (day 2, puzzle 2).
